@@ -1,27 +1,19 @@
 <template>
   <div class="container">
     <HeaderItem />
-    <div class="row">
-      <div class="col">
-        Column
-      </div>
-      <div class="col">
-        Column
-      </div>
-      <div class="col">
-        Column
-      </div>
-    </div>
+    <GridItem />
   </div>
 </template>
 
 <script>
 import HeaderItem from "@/components/Header";
+import GridItem from "@/components/Grid";
 
 export default {
   name: 'App',
   components: {
     HeaderItem,
+    GridItem
   }
 }
 </script>
