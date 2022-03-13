@@ -1,7 +1,11 @@
 <template>
   <header>
     <h1>Star Wars Characters</h1>
-    <ButtonItem @show-characters="$emit('show-characters')"/>
+    <ButtonItem
+        @btn-click="$emit('toggle-grid')"
+        :text="showStarWarsCharacters ? 'Hide Characters' : 'Show Characters'"
+        :classText="showStarWarsCharacters ? 'btn btn-danger' : 'btn btn-success'"
+    />
   </header>
 </template>
 
@@ -13,7 +17,10 @@ export default {
   components: {
     ButtonItem
   },
-  emits: ['show-characters']
+  props: {
+    showStarWarsCharacters: Boolean
+  },
+  emits: ['toggle-grid']
 }
 </script>
 
@@ -22,6 +29,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px;
+  margin-bottom: 20px;
+}
+h1 {
+  color: white;
 }
 </style>

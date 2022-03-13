@@ -1,11 +1,15 @@
 <template>
-  <button @click="$emit('show-characters')" class="btn btn-success">Show Characters</button>
+  <button @click="$emit('btn-click')" :class="classText" >{{ text }}</button>
 </template>
 
 <script>
 export default {
   name: 'ButtonItem',
-  emits: ['show-characters']
+  props: {
+    text: String,
+    classText: String
+  },
+  emits: ['btn-click']
 }
 </script>
 

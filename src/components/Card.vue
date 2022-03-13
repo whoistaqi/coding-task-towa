@@ -24,14 +24,18 @@ export default {
 <style scoped>
 .card {
   border-radius: 20px;
-  border-color: black;
+  border-color: white;
+  color: white;
+  background-color: transparent;
 }
 .card-header {
   border-radius: 20px 20px 0 0;
   padding-top: 16px;
   padding-bottom: 8px;
+  background: rgb(26, 26, 26, 0.3);
 }
 .list-group-item {
   background: none;
+  color: cornsilk;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <HeaderItem @show-characters="getStarWarsCharacters()" />
-    <GridItem :characters="characters" />
+    <HeaderItem :showStarWarsCharacters="showStarWarsCharacters" @toggle-grid="toggleShowCharacters()" />
+    <GridItem v-show="showStarWarsCharacters" :characters="characters" />
   </div>
 </template>
 
@@ -17,20 +17,30 @@ export default {
   },
   data() {
     return {
-      characters: []
+      characters: [],
+      showStarWarsCharacters: false
     }
   },
   methods: {
+    toggleShowCharacters() {
+      this.showStarWarsCharacters = !this.showStarWarsCharacters
+    },
     async getStarWarsCharacters() {
       const res = await fetch('https://swapi.dev/api/people')
       const { results } = await res.json()
-      this.characters = results
+      return results
       //console.log(this.characters)
-    },
+    }
+  },
+  async created() {
+    this.characters = await this.getStarWarsCharacters()
   }
 }
 </script>
 
 <style scoped>
+.container {
+  margin-top: 20px;
+}
 
 </style>
