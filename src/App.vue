@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <HeaderItem />
-    <GridItem />
+    <HeaderItem @show-characters="getStarWarsCharacters()" />
+    <GridItem :characters="characters" />
   </div>
 </template>
 
@@ -14,6 +14,19 @@ export default {
   components: {
     HeaderItem,
     GridItem
+  },
+  data() {
+    return {
+      characters: []
+    }
+  },
+  methods: {
+    async getStarWarsCharacters() {
+      const res = await fetch('https://swapi.dev/api/people')
+      const { results } = await res.json()
+      this.characters = results
+      //console.log(this.characters)
+    },
   }
 }
 </script>

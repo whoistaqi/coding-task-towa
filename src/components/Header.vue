@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1>Star Wars Characters</h1>
-    <ButtonItem />
+    <ButtonItem @show-characters="$emit('show-characters')"/>
   </header>
 </template>
 
@@ -12,7 +12,8 @@ export default {
   name: 'HeaderItem',
   components: {
     ButtonItem
-  }
+  },
+  emits: ['show-characters']
 }
 </script>
 
@@ -21,6 +22,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 </style>
