@@ -3,16 +3,13 @@
     <HeaderItem :showStarWarsCharacters="showStarWarsCharacters" @toggle-grid="toggleShowCharacters()" />
     <GridItem
         v-show="showStarWarsCharacters"
+        :loading="loading"
         :characters="characters"
         :showPreviousButton="showPreviousButton"
         @show-previous-characters="showPreviousCharacters()"
         :showNextButton="showNextButton"
         @show-next-characters="showNextCharacters()"
     />
-    <footer>
-<!--      <button v-show="showPreviousButton" @click="showPreviousCharacters()" class="btn btn-light">previous</button>-->
-<!--      <button v-show="showNextButton" @click="showNextCharacters()" class="btn btn-light">next</button>-->
-    </footer>
   </div>
 </template>
 
@@ -28,9 +25,10 @@ export default {
   },
   data() {
     return {
+      loading: false,
       characters: [],
       showStarWarsCharacters: false,
-      page: 1,  //new
+      page: 1,
       showNextButton: true,
       showPreviousButton: true,
     }
@@ -40,13 +38,18 @@ export default {
       this.showStarWarsCharacters = !this.showStarWarsCharacters
     },
     async getStarWarsCharacters() {
-      console.log(this.page)
+      this.loading = true
       this.showPreviousButton = this.page !== 1;
-      const res = await fetch('https://swapi.dev/api/people/?page='+this.page)
-      const data = await res.json()
-      this.showNextButton = data.next !== null;
-      return data.results
-      //console.log(this.characters)
+      try {
+        const res = await fetch('https://swapi.dev/api/people/?page='+this.page)
+        const data = await res.json()
+        this.loading = false
+        this.showNextButton = data.next !== null;
+        return data.results
+      } catch (error) {
+        console.log(error)
+        this.loading = false
+      }
     },
     async showNextCharacters() {
       this.page++

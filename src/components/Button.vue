@@ -1,5 +1,5 @@
 <template>
-  <button @click="$emit('btn-click')" :class="classText" >{{ text }}</button>
+  <button @click="$emit('btn-click')" :class="classText">{{ text }}</button>
 </template>
 
 <script>
