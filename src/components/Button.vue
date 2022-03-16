@@ -17,4 +17,14 @@ export default {
 button {
   margin-left: 20px;
 }
+.btn-light {
+  color: white;
+  background-color: transparent;
+  border-color: #f8f9fa;
+  font-weight: bold;
+}
+.btn-light:hover {
+  color: black;
+  background-color: white;
+}
 </style>
